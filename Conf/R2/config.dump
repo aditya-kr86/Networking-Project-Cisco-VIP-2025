@@ -1,0 +1,14 @@
+hostname R2
+!
+interface Fa1/1
+ description to R1:Fa1/0
+ ip address 10.0.1.2 255.255.255.0
+ mtu 1500
+ bandwidth 100000
+!
+interface Fa1/1
+ mtu 1500
+!
+router ospf 1
+ network 10.0.1.0 0.0.0.255 area 0
+!

@@ -1,0 +1,161 @@
+{
+  "nodes": [
+    [
+      "R1",
+      {
+        "device_type": "router",
+        "protocols": [
+          "OSPF"
+        ],
+        "asn": null
+      }
+    ],
+    [
+      "R3",
+      {
+        "device_type": "router",
+        "protocols": [
+          "OSPF"
+        ],
+        "asn": null
+      }
+    ],
+    [
+      "R2",
+      {
+        "device_type": "router",
+        "protocols": [
+          "OSPF"
+        ],
+        "asn": null
+      }
+    ]
+  ],
+  "edges": [
+    [
+      "R1",
+      "R3",
+      {
+        "links": [
+          [
+            "R3",
+            "Fa0/1",
+            "R1",
+            "Fa0/1"
+          ],
+          [
+            "R1",
+            "Fa0/1",
+            "R3",
+            "Fa0/1"
+          ]
+        ],
+        "capacity_kbps": 100000,
+        "mtus": [
+          [
+            1400,
+            1500
+          ],
+          [
+            1500,
+            1400
+          ]
+        ]
+      }
+    ],
+    [
+      "R1",
+      "R2",
+      {
+        "links": [
+          [
+            "R1",
+            "Fa1/0",
+            "R2",
+            "Fa1/1"
+          ],
+          [
+            "R2",
+            "Fa1/1",
+            "R1",
+            "Fa1/0"
+          ]
+        ],
+        "capacity_kbps": 200000,
+        "mtus": [
+          [
+            1500,
+            1500
+          ],
+          [
+            1500,
+            1500
+          ]
+        ]
+      }
+    ]
+  ],
+  "issues": [
+    {
+      "type": "mtu_mismatch",
+      "link": "R1-R3",
+      "mtu_a": 1400,
+      "mtu_b": 1500
+    },
+    {
+      "type": "mtu_mismatch",
+      "link": "R1-R3",
+      "mtu_a": 1500,
+      "mtu_b": 1400
+    }
+  ],
+  "edge_load_kbps": {
+    "R1-R3": 65000,
+    "R1-R2": 25000
+  },
+  "recommendations": [
+    "On link R1-R3, set both sides MTU to 1400 to resolve mismatch.",
+    "On link R1-R3, set both sides MTU to 1400 to resolve mismatch."
+  ],
+  "day1_sim_log": {
+    "R1": [
+      [
+        "R3",
+        "NEIGHBOR_HELLO"
+      ],
+      [
+        "R3",
+        "NEIGHBOR_ACK"
+      ],
+      [
+        "R2",
+        "NEIGHBOR_HELLO"
+      ],
+      [
+        "R2",
+        "NEIGHBOR_ACK"
+      ]
+    ],
+    "R3": [
+      [
+        "R1",
+        "NEIGHBOR_HELLO"
+      ],
+      [
+        "R1",
+        "NEIGHBOR_ACK"
+      ]
+    ],
+    "R2": [
+      [
+        "R1",
+        "NEIGHBOR_HELLO"
+      ],
+      [
+        "R1",
+        "NEIGHBOR_ACK"
+      ]
+    ]
+  },
+  "notes": "This is a simplified educational demo as per internship assignment."
+}
